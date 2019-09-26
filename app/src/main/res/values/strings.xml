@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ReadNFCTag</string>
+    <string name="nfc_error">NFC is disabled</string>
+</resources>
