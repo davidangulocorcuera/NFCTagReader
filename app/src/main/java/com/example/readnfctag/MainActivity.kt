@@ -2,8 +2,6 @@ package com.example.readnfctag
 
 
 import android.app.PendingIntent
-import android.content.Intent
-import android.content.IntentFilter
 import android.nfc.NfcAdapter
 import android.nfc.Tag
 import android.nfc.tech.NfcA
@@ -11,6 +9,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.IOException
+import android.R.attr.label
+import android.content.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +32,13 @@ class MainActivity : AppCompatActivity() {
         if (!nfcAdapter.isEnabled) {
             tvNfcTag.text = getString(R.string.nfc_error)
         }
+
+        btnCopyText.setOnClickListener {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("", tvNfcTag.text)
+            clipboard.setPrimaryClip(clip)
+        }
+
     }
 
 
