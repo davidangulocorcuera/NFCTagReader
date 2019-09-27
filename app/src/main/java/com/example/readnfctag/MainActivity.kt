@@ -9,6 +9,8 @@ import android.nfc.NfcAdapter
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        var liveData: MutableLiveData<String> = MutableLiveData<String>()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         nfcAdapter = NfcAdapter.getDefaultAdapter(this)
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         val tag: Tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG)
+
         tvNfcTag.text = tag.id.toString()
     }
 
